@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoOrden &middot; Admin Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+
+<!-- ============================================================
+     LOGIN GATEKEEPER
+============================================================ -->
+<div class="login-screen" id="loginScreen">
+  <form class="login-card glass-strong" id="loginForm">
+    <div class="brand">Auto<span class="oman">Orden</span></div>
+    <span class="eyebrow">Admin Access</span>
+    <input type="password" class="form-field" id="loginPassword" placeholder="Enter admin password" required autofocus>
+    <div class="form-error" id="loginError"></div>
+    <button type="submit" class="btn btn-primary btn-block">Unlock Dashboard</button>
+  </form>
+</div>
+
+<!-- ============================================================
+     DASHBOARD SHELL
+============================================================ -->
+<div class="admin-shell" id="adminShell">
+  <div class="container">
+
+    <div class="admin-header">
+      <div>
+        <div class="admin-title">Dashboard</div>
+        <span class="eyebrow" style="margin-bottom:0;">Lima, Peru</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="index.html" class="back-link">&larr; Storefront</a>
+        <button class="btn btn-sm btn-danger" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip">
+      <div class="kpi-card glass" id="kpiRemainingCard">
+        <div class="kpi-label">Remaining Units</div>
+        <div class="kpi-value" id="kpiRemaining">1,000</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-label">Placed Units</div>
+        <div class="kpi-value" id="kpiPlaced">0</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-label">Total Revenue</div>
+        <div class="kpi-value" id="kpiRevenue">0 PEN</div>
+      </div>
+      <div class="kpi-card glass">
+        <div class="kpi-label">Pending Requests</div>
+        <div class="kpi-value" id="kpiPending">0</div>
+      </div>
+    </div>
+
+    <!-- INVENTORY MANAGEMENT -->
+    <div class="admin-panel glass">
+      <div class="admin-panel-head">
+        <div class="admin-panel-title">Inventory Management</div>
+      </div>
+      <form class="inline-form" id="inventoryOverrideForm">
+        <label class="field-label" style="margin-bottom:0;">Units sold</label>
+        <input type="number" class="form-field" id="inventoryOverrideInput" min="0" step="1">
+        <button type="submit" class="btn btn-primary btn-sm">Update Inventory</button>
+      </form>
+    </div>
+
+    <!-- PENDING REQUESTS -->
+    <div class="admin-panel glass">
+      <div class="admin-panel-head">
+        <div class="admin-panel-title">Pending Requests</div>
+        <button class="btn btn-danger btn-sm" id="deleteAllPendingBtn">Delete All Pending</button>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Client</th>
+              <th>Phone</th>
+              <th>Region</th>
+              <th>Address</th>
+              <th>Model</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="pendingTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SALES LEDGER -->
+    <div class="admin-panel glass">
+      <div class="admin-panel-head">
+        <div class="admin-panel-title">Approved Sales Ledger</div>
+        <span class="field-label" style="margin-bottom:0;">Last 10 transactions</span>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Client</th>
+              <th>Region</th>
+              <th>Address</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="salesTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SYSTEM UTILITIES -->
+    <div class="danger-zone">
+      <div>
+        <div class="admin-panel-title">Reset System Data</div>
+        <p style="margin:6px 0 0;">Permanently clears inventory, pending requests, and sales from this browser.</p>
+      </div>
+      <button class="btn btn-danger" id="resetDataBtn">Reset Data</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoOrden &middot; El Desierto, Refinado</title>
+<link rel="stylesheet" href="styles.css">
+<!-- Nitro Icon SVG Definition -->
+<svg style="position: absolute; width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="nitro-icon" viewBox="0 0 48 48" fill="none">
+    <defs>
+      <linearGradient id="nitroGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FF6B00"/>
+        <stop offset="50%" stop-color="#FFD700"/>
+        <stop offset="100%" stop-color="#FF4500"/>
+      </linearGradient>
+      <linearGradient id="nitroGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#FF8C00"/>
+        <stop offset="100%" stop-color="#FFD700"/>
+      </linearGradient>
+    </defs>
+    <!-- Lightning Bolt -->
+    <path d="M28 4L16 24H24L20 44L32 24H24L28 4Z" fill="url(#nitroGradient1)" stroke="url(#nitroGradient2)" stroke-width="1.5"/>
+    <!-- Sparkles -->
+    <circle cx="12" cy="10" r="2" fill="#FFD700"/>
+    <circle cx="36" cy="38" r="2" fill="#FFD700"/>
+    <circle cx="38" cy="14" r="1.5" fill="#FF6B00"/>
+    <circle cx="10" cy="36" r="1.5" fill="#FF6B00"/>
+  </symbol>
+</svg>
+</head>
+<body>
+
+<!-- ============================================================
+     PRELOADER
+============================================================ -->
+<div class="preloader" id="preloader">
+  <div class="preloader-content">
+    <div class="car-icon">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="car-svg">
+        <defs>
+          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--orange-soft)"/>
+            <stop offset="50%" stop-color="var(--primary)"/>
+            <stop offset="100%" stop-color="var(--orange-deep)"/>
+          </linearGradient>
+          <linearGradient id="innerGradient" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="var(--primary)"/>
+            <stop offset="100%" stop-color="var(--orange-deep)"/>
+          </linearGradient>
+        </defs>
+        <path d="M40 8L64 56H56L50 44H30L24 56H16L40 8Z" fill="url(#logoGradient)"/>
+        <path d="M30 36H50L44 24L40 16L36 24L30 36Z" fill="url(#innerGradient)"/>
+        <rect x="32" y="30" width="16" height="8" rx="4" fill="var(--bg-dark)"/>
+      </svg>
+    </div>
+    <h1 class="preloader-title">Auto<span class="oman">Orden</span></h1>
+  </div>
+</div>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<header class="navbar">
+  <div class="container">
+    <nav class="navbar-inner glass">
+      <a href="#" class="brand">Auto<span class="oman">Orden</span></a>
+      <div class="nav-links">
+        <a href="#collection">Colección</a>
+        <a href="#craft">Artesanía</a>
+        <a href="#order">Reservar</a>
+        <a href="#order" class="btn btn-primary btn-sm reserve-btn">Reservar</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero">
+  <div class="hero-background">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80" alt="Escena de lujo en el desierto" class="hero-bg-image">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="badge glass">
+      <span class="pulse-dot"></span>
+      Edición de 1,000
+    </div>
+    <h1 class="hero-title">Alma Andina, <em>Perfeccionada</em>.</h1>
+    <p class="hero-sub">Accesorios premium de alpaca y cuero inspirados en las antiguas tradiciones peruanas, elaborados a mano con amor en el corazón de los Andes.</p>
+    <div class="hero-ctas">
+      <a href="#collection" class="btn btn-primary">Explora la Colección</a>
+      <button class="btn btn-ghost" data-open-modal="deliveryModal">Información de Envío</button>
+      <div class="nitro-icon-inline">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <use href="#nitro-icon"/>
+        </svg>
+      </div>
+    </div>
+    <div class="inventory-widget glass reveal">
+      <div class="inventory-widget-top">
+        <span>Unidades restantes</span>
+        <strong id="invRemaining">1,000</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="invFill" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AI VOICE SEARCH
+============================================================ -->
+<div class="nitro-icon-section nitro-ask-left">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <use href="#nitro-icon"/>
+  </svg>
+</div>
+<div class="nitro-icon-section nitro-ask-right">
+  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <use href="#nitro-icon"/>
+  </svg>
+</div>
+<section class="section" id="ask">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pregunta a AutoOrden</span>
+      <h2 class="section-title">Cualquier cosa que quieras saber</h2>
+      <p class="section-sub">Pregunta sobre envío, materiales, horarios o precios al por mayor — por voz o escribiendo.</p>
+    </div>
+    <div class="voice-panel glass reveal">
+      <div class="voice-row">
+        <button class="mic-btn" id="micBtn" aria-label="Pregunta por voz">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mic-svg">
+            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" fill="var(--primary)"/>
+            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" fill="var(--orange-soft)"/>
+          </svg>
+        </button>
+        <input type="text" class="voice-input" id="voiceInput" placeholder="Ej: ¿Cuánto tarda el envío?">
+        <button class="btn btn-primary btn-sm ask-btn" id="askBtn">Preguntar</button>
+      </div>
+      <div class="ai-response" id="aiResponse"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT SHOWCASE
+============================================================ -->
+<section class="section" id="collection">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">La Colección</span>
+      <h2 class="section-title">Dos siluetas, un estándar</h2>
+      <p class="section-sub">Cada pieza es terminada a mano y numerada como parte de la edición limitada de 1,000.</p>
+    </div>
+    <div class="product-grid">
+
+      <article class="product-card glass reveal">
+        <div class="product-media">
+          <img src="images/img (3).jpeg" alt="Bolsa de cuero Ejecutiva de perfil delgado">
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Ejecutiva de Perfil Delgado</h3>
+          <div class="product-price">100 PEN</div>
+          <p class="product-desc">Cuero acolchado en diamante con perfil ultra delgado, diseñado para la oficina moderna y el desierto moderno.</p>
+          <ul class="product-features">
+            <li>Cuero toscano acolchado en diamante</li>
+            <li>Perfil ultra delgado, menos de 3 cm</li>
+            <li>Detalle de costura de oro 24K</li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-select-model="slim">Seleccionar Este Modelo</button>
+        </div>
+      </article>
+
+      <article class="product-card glass reveal">
+        <div class="product-media">
+          <img src="images/img (8).jpg" alt="Bolsa de cuero Edición Viaje con Bandeja Inteligente">
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Edición Viaje con Bandeja Inteligente</h3>
+          <div class="product-price">120 PEN</div>
+          <p class="product-desc">Bandeja plegable incorporada en cuero de grano completo premium beige, diseñado para el viajero que nunca se detiene.</p>
+          <ul class="product-features">
+            <li>Bandeja plegable incorporada</li>
+            <li>Cuero de grano completo premium beige</li>
+            <li>Cosillas reforzadas listas para viajar</li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-select-model="tray">Seleccionar Este Modelo</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COLLECTION REELS
+============================================================ -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Detalles</span>
+      <h2 class="section-title">Reels de la Colección</h2>
+    </div>
+  </div>
+  <div class="carousel-container">
+    <button class="carousel-arrow carousel-arrow-left" id="reelLeftArrow">&#10094;</button>
+    <div class="reel reveal" id="collectionReel">
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">01</span>
+          <img src="images/img (3).jpeg" alt="Detalle de costura de cuero">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="slim">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">02</span>
+          <img src="images/img (4).jpeg" alt="Detalle de herraje">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">03</span>
+          <img src="images/img (5).jpeg" alt="Detalle de textura de cuero">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="slim">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">04</span>
+          <img src="images/img (6).jpeg" alt="Vista abierta de edición bandeja">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">05</span>
+          <img src="images/img (9).jpg" alt="Vista de bolsa ejecutiva">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item">
+          <span class="card-number">06</span>
+          <img src="images/img (2).jpeg" alt="Detalle de bolsa de viaje">
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+    </div>
+    <button class="carousel-arrow carousel-arrow-right" id="reelRightArrow">&#10095;</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIDEO REELS
+============================================================ -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">En Movimiento</span>
+      <h2 class="section-title">Reels de Video</h2>
+    </div>
+  </div>
+  <div class="carousel-container">
+    <button class="carousel-arrow carousel-arrow-left" id="videoReelLeftArrow">&#10094;</button>
+    <div class="reel reveal" id="videoReel">
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (1).mp4" data-title="Ejecutiva de Perfil Delgado" data-description="Bolsa de cuero premium con acabado acolchado en diamante y diseño ultra delgado, perfecto para la oficina moderna y viajes.">
+          <span class="card-number">01</span>
+          <img src="images/img (5).jpeg" alt="Miniatura de video de proceso de elaboración" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (5).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="slim">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (2).mp4" data-title="Edición Viaje con Bandeja Inteligente" data-description="Bandeja plegable incorporada en cuero de grano completo premium beige, diseñado para el viajero que nunca se detiene.">
+          <span class="card-number">02</span>
+          <img src="images/img (4).jpeg" alt="Miniatura de video de costura" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (2).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (3).mp4" data-title="Artesanía Andina" data-description="Cada pieza es terminada a mano con técnicas tradicionales, garantizando calidad y exclusividad.">
+          <span class="card-number">03</span>
+          <img src="images/img (2).jpeg" alt="Miniatura de video de acabado" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (3).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (4).mp4" data-title="Materiales Premium" data-description="Solo los mejores cueros y materiales son utilizados, seleccionados por su excepcional calidad y durabilidad.">
+          <span class="card-number">04</span>
+          <img src="images/img (9).jpg" alt="Miniatura de video de detalle de cuero" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (4).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (7).mp4" data-title="Listo para Viajar" data-description="Construcción reforzada y diseño inteligente hacen de esta bolsa la perfecta para cualquier aventura de viaje.">
+          <span class="card-number">05</span>
+          <img src="images/img (6).jpeg" alt="Miniatura de video de bolsa de viaje" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (7).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+      <div class="reel-card-wrapper">
+        <div class="reel-item video-reel-item" data-video="videos/vid (6).mp4" data-title="Atención al Detalle" data-description="Cada costura y detalle es cuidadosamente considerado para crear un producto que sea hermoso y funcional.">
+          <span class="card-number">06</span>
+          <img src="images/img (2).jpeg" alt="Miniatura de video de textura" class="video-thumbnail">
+          <video class="video-preview" muted loop playsinline>
+            <source src="videos/vid (6).mp4" type="video/mp4">
+          </video>
+          <div class="play-icon">&#9658;</div>
+          <div class="reel-overlay"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-select-model="tray">Comprar Ahora</button>
+      </div>
+    </div>
+    <button class="carousel-arrow carousel-arrow-right" id="videoReelRightArrow">&#10095;</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     CRAFT STRIP
+============================================================ -->
+<section id="craft" class="craft-strip reveal">
+  <div class="craft-stat">
+    <div class="craft-num">1,000</div>
+    <div class="craft-label">Unidades</div>
+  </div>
+  <div class="craft-stat">
+    <div class="craft-num">47</div>
+    <div class="craft-label">Horas por pieza</div>
+  </div>
+  <div class="craft-stat">
+    <div class="craft-num">25</div>
+    <div class="craft-label">Regiones de entrega</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ORDER SECTION
+============================================================ -->
+<section class="section" id="order">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Reserva la tuya</span>
+      <h2 class="section-title">Completa tu pedido</h2>
+      <p class="section-sub">Elige tu modelo y cantidad, confirma tus datos y finaliza el pedido por WhatsApp.</p>
+    </div>
+
+    <form class="order-panel glass reveal" id="orderForm">
+
+      <label class="field-label">Elige tu modelo</label>
+      <div class="model-toggle">
+        <div class="model-option active" data-model="slim">
+          <div class="m-name">Ejecutiva de Perfil Delgado</div>
+          <div class="m-price">100 PEN</div>
+        </div>
+        <div class="model-option" data-model="tray">
+          <div class="m-name">Edición Viaje con Bandeja Inteligente</div>
+          <div class="m-price">120 PEN</div>
+        </div>
+      </div>
+
+      <label class="field-label">Cantidad</label>
+      <div class="qty-picks">
+        <button type="button" class="qty-pick active" data-qty="1">1 &middot; Firma</button>
+        <button type="button" class="qty-pick" data-qty="2">2 &middot; Par</button>
+        <button type="button" class="qty-pick" data-qty="3plus">3+ &middot; Al por mayor <span class="discount-badge" id="discountBadge">-10 PEN/unidad</span></button>
+      </div>
+
+      <div class="bulk-stepper" id="bulkStepper">
+        <button type="button" class="stepper-btn" id="bulkMinus">&minus;</button>
+        <input type="number" class="bulk-input" id="bulkInput" min="3" value="3">
+        <button type="button" class="stepper-btn" id="bulkPlus">+</button>
+        <div class="bulk-presets">
+          <button type="button" class="bulk-preset" data-preset="4">4</button>
+          <button type="button" class="bulk-preset" data-preset="5">5</button>
+          <button type="button" class="bulk-preset" data-preset="6">6</button>
+          <button type="button" class="bulk-preset" data-preset="8">8</button>
+          <button type="button" class="bulk-preset" data-preset="10">10</button>
+          <button type="button" class="bulk-preset" data-preset="15">15</button>
+          <button type="button" class="bulk-preset" data-preset="20">20</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <input type="text" class="form-field" id="orderName" placeholder="Nombre completo" required>
+        <input type="tel" class="form-field" id="orderPhone" placeholder="Número de teléfono" required>
+        <select class="form-field full" id="orderWilayah" required>
+          <option value="" disabled selected>Selecciona tu región</option>
+          <option>Amazonas</option>
+          <option>Ancash</option>
+          <option>Apurímac</option>
+          <option>Arequipa</option>
+          <option>Ayacucho</option>
+          <option>Cajamarca</option>
+          <option>Callao</option>
+          <option>Cusco</option>
+          <option>Huancavelica</option>
+          <option>Huánuco</option>
+          <option>Ica</option>
+          <option>Junín</option>
+          <option>La Libertad</option>
+          <option>Lambayeque</option>
+          <option>Lima</option>
+          <option>Loreto</option>
+          <option>Madre de Dios</option>
+          <option>Moquegua</option>
+          <option>Pasco</option>
+          <option>Piura</option>
+          <option>Puno</option>
+          <option>San Martín</option>
+          <option>Tacna</option>
+          <option>Tumbes</option>
+          <option>Ucayali</option>
+        </select>
+        <input type="text" class="form-field full" id="orderAddress" placeholder="Dirección de casa" required>
+      </div>
+
+      <div class="form-error" id="formError"></div>
+
+      <div class="total-row">
+        <span class="total-label">Total a pagar</span>
+        <span class="total-value" id="totalValue">100 PEN</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Pedido por WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+    AutoOrden &middot; Taller Artesanal Andino &middot; Lima
+  </footer>
+
+<!-- ============================================================
+     MODALS
+============================================================ -->
+<div class="modal-overlay" id="deliveryModal">
+  <div class="modal-box glass-strong">
+    <button class="modal-close" data-close-modal="deliveryModal">&times;</button>
+    <h3 class="modal-title">Información de Envío</h3>
+    <p>El envío tarda de 2 a 5 días hábiles en todas las regiones de Perú, puerta a puerta.</p>
+    <p>Los pedidos son aceptados 24/7. El soporte por WhatsApp está disponible todos los días de 8 AM a 10 PM (PET) para cualquier pregunta sobre tu pedido.</p>
+    <p>Cada pedido es confirmado por nuestro equipo por WhatsApp antes de ser enviado.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="craftModal">
+  <div class="modal-box glass-strong">
+    <button class="modal-close" data-close-modal="craftModal">&times;</button>
+    <h3 class="modal-title">Artesanía Andina</h3>
+    <p>Cada pieza comienza con alpaca peruana premium y cuero genuino, seleccionados por su calidad y suavidad.</p>
+    <p>Las costuras son terminadas a mano usando técnicas tradicionales transmitidas por generaciones de artesanos andinos.</p>
+    <p>Cada pieza AutoOrden tiene una garantía de 10 años contra defectos de fabricación.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="orderConfirmModal">
+  <div class="modal-box glass-strong">
+    <button class="modal-close" data-close-modal="orderConfirmModal">&times;</button>
+    <h3 class="modal-title">Pedido Recibido</h3>
+    <p>Tu pedido ha sido registrado y se ha preparado un mensaje de WhatsApp para nuestro equipo.</p>
+    <p>Por favor envía el mensaje en WhatsApp para confirmar tu reserva. Un miembro de nuestro equipo verificará tu pedido en breve.</p>
+    <button class="btn btn-primary btn-block" data-close-modal="orderConfirmModal">Listo</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box video-box glass-strong">
+    <button class="modal-close" data-close-modal="videoModal">&times;</button>
+    <video id="videoPlayer" controls></video>
+    <div class="video-modal-content">
+      <h3 class="video-modal-title" id="videoModalTitle"></h3>
+      <p class="video-modal-description" id="videoModalDescription"></p>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
